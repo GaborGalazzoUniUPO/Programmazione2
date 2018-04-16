@@ -190,6 +190,7 @@ citta *leggi_lista_da_file(FILE *f)
   return lis;
 }
 
+
 // cerca in lista citta' con nome n
 // restituisco puntatore alla citta con nome n o NULL
 // se non ci sono citta' con quel nome nella lista
@@ -237,9 +238,6 @@ citta *cancella_citta(citta *lis, char *n, citta **trovata)
     precedente->next = candidato->next;
   return lis;  
 }
-
-
-
 
 int main(int argc, char *argv[])
 {
