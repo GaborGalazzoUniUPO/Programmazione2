@@ -9,3 +9,4 @@
 
 # Unignore makefiles
 !*makefile
+*.vscode
