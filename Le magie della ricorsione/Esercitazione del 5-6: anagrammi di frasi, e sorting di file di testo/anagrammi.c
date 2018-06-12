@@ -10,26 +10,29 @@ void die(const char *s);
 
 // stampa tutte le parole che si ottengono
 // permutado i primi n caratteri della stringa s[]
-int anagrammi(char *s[], int n)
+int anagrammi(char *s[], int n, int num_word)
 {
     if (n == 1)
     {
-        printf("%s %s %s\n", s[0], s[1], s[2]);
+        for(int i = 0; i<num_word; i++)
+            printf("%-10s", s[i]);
+        printf("\n");
         return 1;
     }
-    int tot = anagrammi(s, n - 1);
+    int tot = anagrammi(s, n - 1, num_word);
     for (int i = n - 2; i >= 0; i--)
     {
-        if (strcmp(s[n - 1], s[i]))
-        {
+        if (strcmp(s[n - 1], s[i])==0 || strcmp(s[i+1], s[i])==0 )
+        continue;
+        
             char *tmp = s[n - 1];
             s[n - 1] = s[i];
             s[i] = tmp;
-            tot += anagrammi(s, n - 1);
+            tot += anagrammi(s, n - 1, num_word);
             tmp = s[n - 1];
             s[n - 1] = s[i];
             s[i] = tmp;
-        }
+        
     }
     return tot;
 }
@@ -42,7 +45,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     printf("\n\n");
-    int tot = anagrammi(argv + 1, argc - 1);
+    int tot = anagrammi(argv + 1, argc - 1, argc-1);
     printf("Ho stampato %d anagrammi\n", tot);
     return 0;
 }
