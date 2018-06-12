@@ -28,9 +28,10 @@ void mergefiles(FILE *dest, FILE *f1, FILE *f2)
     char *next;
     if (letti1 == -1)
     {
-      if(i1!=NULL){
+      if (i1 != NULL)
+      {
         free(i1);
-        i1=NULL;
+        i1 = NULL;
       }
       next = strdup(i2);
       free(i2);
@@ -39,9 +40,10 @@ void mergefiles(FILE *dest, FILE *f1, FILE *f2)
     }
     else if (letti2 == -1)
     {
-       if(i2!=NULL){
-        free(i1);
-        i2=NULL;
+      if (i2 != NULL)
+      {
+        free(i2);
+        i2 = NULL;
       }
       next = strdup(i1);
       free(i1);
@@ -69,8 +71,16 @@ void mergefiles(FILE *dest, FILE *f1, FILE *f2)
       die("Errore scrittura");
     free(next);
   }
-  free(i1);
-  free(i2);
+  if (i1 != NULL)
+  {
+    free(i1);
+    i1 = NULL;
+  }
+  if (i2 != NULL)
+  {
+    free(i2);
+    i2 = NULL;
+  }
 }
 
 // ordina gli n interi contenuti in f (4 byte per intero)
